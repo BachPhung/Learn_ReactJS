@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+   <div id="root"></div>
+    <script>
+        // //DOM
+        // const h1DOM = document.createElement('h1')
+        // h1DOM.className = 'heading'
+        // h1DOM.title = 'hello'
+        // h1DOM.innerText = 'Hello World'
+        // document.body.appendChild(h1DOM)
+        // // React
+        // const h1React = React.createElement('h1',{
+        //     title: 'Hello',
+        //     className:'heading'
+        // },'Hello World')
+
+        // const postItem = React.createElement('div',{
+        //     className: 'post-item'
+        // },
+        //     React.createElement('h2',{
+        //         title: 'Learn ReactJS'
+        //     },'Learn React JavaScript'),
+        //     React.createElement('p',{},'Basic knowledge about ReactJS')
+        // )
+
+        const unorder_list = React.createElement('div',null,
+             React.createElement('li',null,'JavaScript'),
+             React.createElement('li',null,'ReactJS')
+        )
+        const root = document.getElementById('root')
+        //REACT DOM -> RENDER UI
+        ReactDOM.render(unorder_list,root)
+    </script>
+</body>
+</html>

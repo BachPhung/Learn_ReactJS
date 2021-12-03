@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function PostElement() {
+            return(
+                <div className='post-item'>
+                    <img src='https://static.remove.bg/remove-bg-web/126e8851f6e88bf644890fafdf1b0d82aff0629e/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg'></img>
+                        <h2>React JS</h2>
+                        <p>Element types</p>    
+                </div>
+            )
+        }
+
+        const app = (
+            <div>
+                <PostElement/>
+            </div>
+        )
+        ReactDOM.render(app,document.getElementById('root'))
+
+    </script>
+</body>
+</html>
