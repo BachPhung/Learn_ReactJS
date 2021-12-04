@@ -20,8 +20,10 @@
      -->
     <div id="root"></div>
     <script type="text/babel">
-        const apiURL ='https://api-gateway.fullstack.edu.vn/api/courses/featured';    
-        axios.get(apiURL).then(res=>res.data.data)
+        const apiURL ='https://api-gateway.fullstack.edu.vn/api/courses/featured';  
+        axios.get(apiURL).then(res=>{
+            console.log(res);
+            return res.data.data})
              .then(result=>{
                 const Course_Item = (props) =>{
                     return(
@@ -37,7 +39,7 @@
                     return(
                         <div>
                             {result.map((course,index)=>{
-                                return <Course_Item title={course.title} thumbnail_cdn={course.thumbnail_cdn} 
+                                return <Course_Item key={index} title={course.title} thumbnail_cdn={course.thumbnail_cdn} 
                                 description={course.description} students_count={course.students_count}
                                 />
                             })}
