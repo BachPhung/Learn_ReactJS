@@ -19,7 +19,6 @@ export const Content = () => {
     useEffect(()=>{
         console.log(tab);
          //document.title=title
-         console.log(data);
         axios.get(`https://jsonplaceholder.typicode.com/${tab}`).then(res=>setData(res.data))
     },[tab])
     return (
