@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -38,4 +42,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn:hover{
+  cursor: pointer;
+  opacity: 1 !important;
 }
