@@ -11,32 +11,49 @@ import axios from 'axios'
  * - Callback called after component mounted
  */
 
-const tabs = ['posts','comments','albums']
+ const lessons = [
+    {
+      id:1,
+      name:'React'
+    },
+    {
+      id:2,
+      name:'SPA/MPA'
+    },
+    {
+      id:3,
+      name:'Arrow function'
+    }
+  ]
+
 export const Content = () => {
-    const [title,setTitle] = useState('')
-    const [data,setData] = useState([])
-    const [tab,setTab] = useState('post')
+
+    const [lessonID, setLessonID] = useState(1)
     useEffect(()=>{
-        console.log(tab);
-         //document.title=title
-        axios.get(`https://jsonplaceholder.typicode.com/${tab}`).then(res=>setData(res.data))
-    },[tab])
-    return (
+        const handleComment = (e)=>{
+            console.log(e.detail);
+        }
+        window.addEventListener(`lesson-${lessonID}`,handleComment)
+        return()=>{
+        window.removeEventListener(`lesson-${lessonID}`,handleComment)
+        }
+    },[lessonID])
+    return(
         <div>
-            <h1>Hello everybody</h1>
-            <div>
-                <input placeholder='Change website title' value={title} onChange={(e)=>setTitle(e.target.value)}></input>
-                <div>
-                    {tabs.map(t=>{
-                    return <button key={t} onClick={()=>setTab(t)}>{t}</button>
-                    })}
-                </div>
-                <ul>
-                    {data.map(item=>{
-                            return (<li key={item.id}>{item.title || item.body}</li>)
-                    })}
-                </ul>
-            </div>
+            {lessons.map(lesson =>(
+                <li key={lesson.id}
+                    style={{
+                        color: lessonID === lesson.id ?
+                                'red' :
+                                'black'  
+                    }}    
+                onClick={()=>setLessonID(lesson.id)} >
+                {lesson.name}
+                </li>
+            ))
+
+            }
         </div>
     )
+    
 }
