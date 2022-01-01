@@ -2,33 +2,46 @@ import {createStore} from 'redux'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
 import {noteReducer}  from './reducers/noteReducer'
-const store = createStore(noteReducer)
-
+import { useSelector, useDispatch } from 'react-redux'
+const generateId = () => Math.floor(Math.random()*1000000)
 
 function App() {
+  const dispatch = useDispatch()
+  const notes = useSelector(state=>state);
   const [note,setNote] = useState('')
-  console.log(store.getState());
+  const toggleImportance = (id) =>{
+    dispatch({
+      type: 'TOGGLE_IMPORTANCE',
+      data:{id}
+    })
+  }
   return (
     <div>
-      <ul>
-          {store.getState().map(item=><li>{item}</li>)}
-      </ul>
+      
      <div>
        <input value={note} placeholder='Input' onChange={e=>setNote(e.target.value)}></input>     
        <button onClick={()=>{
-         store.dispatch({type:'NEW_NOTE',data:note})
+         dispatch({type:'NEW_NOTE',data:{
+           content:note,
+           important:false,
+           id: generateId()
+         }})
          setNote('');
          document.querySelector('input').focus()
          }}>ADD</button>
      </div>
+     <ul>
+          {notes.map(item=>
+          <li 
+            onClick={()=>toggleImportance(item.id)}
+            key={item.id}>
+             
+             {item.important?<strong>{item.content}</strong>:<>{item.content}</>}
+          </li>)}
+      </ul>
    </div>
   );
 }
 
-const renderApp = () => {
-  ReactDOM.render(<App/>,document.getElementById('root'))
-}
 
-renderApp();
-store.subscribe(renderApp)
 export default App;
